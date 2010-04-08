@@ -1,4 +1,4 @@
-// Copyright 2007-2010, PensioenPage B.V.
+// Copyright 2007-2009, PensioenPage B.V.
 package org.znerd.yaff;
 
 import java.io.IOException;
