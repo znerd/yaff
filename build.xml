@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<project name="yaff" default="all">
+
+	<!-- Generate everything -->
+	<target name="all" depends="jar,javadoc" description="Generates everything" />
+
+	<!-- Determines current version by reading version file -->
+	<target name="-load-version">
+		<property name="version.file" value=".version.properties" />
+		<property file="${version.file}" />
+		<condition property="version.isset">
+			<and>
+				<isset property="version.major" />
+				<isset property="version.middle" />
+			</and>
+		</condition>
+		<fail unless="version.isset">Missing properties 'version.major' and 'version.middle'.</fail>
+	</target>
+
+	<!-- Initialization settings -->
+	<target name="-init" depends="-load-version">
+
+		<!-- General project properties -->
+		<property name="project.title"     value="YAFF" />
+		<property name="project.name"      value="${ant.project.name}" />
+		<property name="project.version"   value="${version.major}.${version.middle}${version.suffix}" />
+		<property name="project.vendor"    value="znerd.org" />
+		<property name="project.url"       value="http://www.znerd.org/${project.name}/" />
+
+		<!-- Java compiler-related settings -->
+		<property name="javac.sourceversion"   value="1.5"   />
+		<property name="javac.targetvm"        value="1.5"   />
+		<property name="javac.debug"           value="true"  />
+		<property name="javac.deprecation"     value="true"  />
+		<property name="javac.optimize"        value="false" />
+		<property name="javac.compilerargs"    value="-Xlint -Xmaxwarns 9999 -Xmaxerrs 9999" />
+
+		<!-- Source and output directories -->
+		<property name="project.sourcedir"      value="${basedir}/src" />
+		<property name="project.sourcedir.java" value="${project.sourcedir}/main/java" />
+		<property name="javase.sourcedir"       value="${java.home}/src" />
+		<property name="project.outputdir"      value="${basedir}/target" />
+		<property name="classes.outputdir"      value="${project.outputdir}/classes" />
+		<property name="metainf.outputdir"      value="${classes.outputdir}/META-INF" />
+
+		<!-- Verbose log message -->
+		<echo level="verbose" message="${ant.project.name} ${project.version}" />
+	</target>
+
+	<target name="version" depends="-init">
+		<echo message="Java ${java.version}" />
+		<echo message="${ant.version}" />
+		<echo message="${project.title} ${project.version}" />
+	</target>
+
+	<target name="clean" depends="-init" description="Removes all generated files">
+		<delete dir="${project.outputdir}" />
+	</target>
+
+	<!-- Prepare for compilation (typically used inside IDEs, too) -->
+	<target name="prepare-compile" depends="-init" description="Prepares for the compilation, by generating source files and/or other files to be placed with the compiled files">
+
+		<!-- Stick auxiliary files in location where compiled code will go --> 
+		<copy todir="${classes.outputdir}">
+			<fileset dir="${project.sourcedir.java}">
+				<exclude name="**/*.java" />
+				<exclude name="**/package.html" />
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- Compile all source files -->
+	<target name="compile" depends="prepare-compile" description="Compiles the source code">
+		<javac srcdir="${project.sourcedir.java}"
+		     includes="**/*.java"
+		      destdir="${classes.outputdir}"
+		        debug="${javac.debug}"
+		  deprecation="${javac.deprecation}"
+		     optimize="${javac.optimize}"
+		       source="${javac.sourceversion}"
+		       target="${javac.targetvm}"
+			   includeAntRuntime="true">
+			<compilerarg line="${javac.compilerargs}" />
+			<classpath>
+				<fileset dir="lib" includes="*.jar" />
+			</classpath>
+		</javac>
+	</target>
+
+	<!-- Generate JAR file -->
+	<target name="jar" depends="compile" description="Generates the JAR file">
+		<copy todir="${classes.outputdir}/">
+			<fileset dir="${project.sourcedir.java}">
+				<exclude name="**/*.java"       />
+				<exclude name="**/package.html" />
+			</fileset>
+		</copy>
+
+		<jar destfile="${project.outputdir}/${project.name}.jar" basedir="${classes.outputdir}/">
+			<manifest>
+				<attribute name="Main-Class" value="org.znerd.yaff.Library" />
+				<section name="org/znerd/yaff/">
+					<attribute name="Specification-Title"    value="${project.title}"   />
+					<attribute name="Specification-Version"  value="${project.version}" />
+					<attribute name="Specification-Vendor"   value="${project.vendor}"  />
+					<attribute name="Implementation-Title"   value="${project.title}"   />
+					<attribute name="Implementation-Version" value="${project.version}" />
+					<attribute name="Implementation-Vendor"  value="${project.vendor}"  />
+				</section>
+			</manifest>
+		</jar>
+
+	</target>
+
+	<!-- Generate Javadoc -->
+	<target name="javadoc" depends="-init" description="Generates the Javadoc API documentation" unless="nodocs">
+		<macrodef name="generate-javadoc">
+			<attribute name="title"   />
+			<attribute name="destdir" />
+			<attribute name="private" />
+			<attribute name="footer"  />
+
+			<sequential>
+				<mkdir dir="@{destdir}" />
+				<javadoc doctitle="@{title}" windowtitle="@{title}" destdir="@{destdir}" private="@{private}" bottom="@{footer}" source="${javac.sourceversion}" version="yes" use="yes" author="yes">
+					<packageset dir="${project.sourcedir.java}" excludes="org/znerd/yaff/internal/**" />
+
+					<classpath>
+						<fileset dir="lib"             includes="*.jar" />
+						<fileset dir="${ant.home}/lib" includes="*.jar" />
+					</classpath>
+
+					<link offline="true" packagelistloc="src/package-lists/javase/" href="http://java.sun.com/javase/6/docs/api"     />
+					<link offline="true" packagelistloc="src/package-lists/log4j/"  href="http://jakarta.apache.org/log4j/docs/api/" />
+					<link offline="true" packagelistloc="src/package-lists/ant/"    href="http://api.dpml.net/ant/1.7.0/"            />
+				</javadoc>
+			</sequential>
+		</macrodef>
+		<generate-javadoc private="no" destdir="${project.outputdir}/javadoc" title="${project.title} ${project.version}" footer="See &lt;a target=&quot;_top&quot; href='${project.url}'&gt;${project.url}&lt;/a&gt;." />
+	</target>
+
+	<!-- Prints the name and version of this library -->
+	<target name="print-version" depends="compile" description="Prints the version of YAFF">
+		<java classname="org.znerd.yaff.Library">
+			<classpath>
+				<fileset dir="lib" includes="*.jar" />
+				<pathelement path="${classes.outputdir}" />
+			</classpath>
+		</java>
+	</target>
+
+</project>
