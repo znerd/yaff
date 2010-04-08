@@ -1,0 +1,41 @@
+This is YAFF, a framework for creating advanced web applications easily.
+
+Consider YAFF an alternative to JSP pages. Java coders can code Java (which
+produces XML), while HTML coders code their HTML using XSLT.
+
+YAFF is a plugin for XINS (or more specifically, a "calling convention" in
+XINS-terminology) and has been used in production websites since 2007.
+This software is available under the terms of a BSD-style license, see
+the accompanied COPYRIGHT file.
+
+A YAFF application has all the advantages of a regular XINS application,
+including lots of operations-oriented functionality. E.g. runtime statistics,
+test forms, JSON-support, JSON-RPC-support, etc.
+
+
+BUILDING YAFF
+
+To build YAFF self, use Ant 1.7.1 (1.8.0 may also work) and execute:
+
+   ant
+
+Under the target/ directory files will be generated, including a JAR file and
+Javadoc API documentation.
+
+
+HISTORY
+
+YAFF is a plugin for XINS (or more specifically, a "calling convention" in
+XINS-terminology) and has been used in production websites since 2007.
+
+
+BUG REPORTS AND FEATURE REQUESTS
+
+If you want to file a bug report or a feature request, please do so here:
+
+   http://github.com/znerd/yaff/issues
+
+
+--
+Ernst de Haan
+ernst@ernstdehaan.com
