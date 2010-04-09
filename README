@@ -15,7 +15,7 @@ test forms, JSON-support, JSON-RPC-support, etc.
 
 BUILDING YAFF
 
-To build YAFF self, use Ant 1.7.1 (1.8.0 may also work) and execute:
+To build YAFF, use Apache Ant (version 1.7.1 works) and execute:
 
    ant
 
