@@ -49,6 +49,12 @@ public class YAFFCallingConvention extends CustomCallingConvention {
     * Key used to store the wrapper around the original HTTP request.
     */
    private final static String WRAPPED_REQUEST = "WRAPPED_REQUEST";
+
+   /**
+    * Key used to store a reference to the XINS FunctionRequest object as an
+    * attribute with an HttpServletRequest.
+    */
+   private final static String XINS_REQUEST_ATTR = "XINS_FUNCTION_REQUEST";
          
 
    //-------------------------------------------------------------------------
@@ -88,7 +94,7 @@ public class YAFFCallingConvention extends CustomCallingConvention {
       AppCenter appCenter = AppCenter.get();
       appCenter.setContext(null);
 
-      // Determine the applicable virtual host (may be null)
+      // Determine the applicable virtual host (can be null)
       VirtualHostHandler vhostHandler = appCenter.getVirtualHostHandler(httpRequest);
 
       // No matching virtual host found, return 404 page (NotFound),
@@ -111,9 +117,13 @@ public class YAFFCallingConvention extends CustomCallingConvention {
             httpRequest = wrapper;
          }
 
+         // Make the virtual host handler process the request
          xinsRequest = vhostHandler.convertRequest(httpRequest);
       }
       
+      // Store the FunctionRequest, so convertResultImpl can use it
+      httpRequest.setAttribute(XINS_REQUEST_ATTR, xinsRequest);
+
       return xinsRequest;
    }
 
@@ -131,6 +141,12 @@ public class YAFFCallingConvention extends CustomCallingConvention {
       MandatoryArgumentChecker.check("xinsResult",   xinsResult,
                                      "httpResponse", httpResponse,
                                      "httpRequest",  httpRequest);
+
+      // Find the (required) XINS FunctionRequest reference
+      FunctionRequest xinsRequest = (FunctionRequest) httpRequest.getAttribute(XINS_REQUEST_ATTR);
+      if (xinsRequest == null) {
+         throw new IOException("Unable to find org.xins.server.FunctionRequest instance associated with the javax.servlet.HttpServletRequest object.");
+      }
 
       // Possibly the HTTP request is wrapped
       Object wrapper = httpRequest.getAttribute(WRAPPED_REQUEST);
