@@ -10,8 +10,10 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import org.xins.common.MandatoryArgumentChecker;
 import org.xins.common.Utils;
+import org.xins.common.collections.BasicPropertyReader;
 import org.xins.common.collections.PropertyReader;
 import org.xins.common.text.TextUtils;
+import org.xins.common.xml.Element;
 import org.xins.server.CustomCallingConvention;
 import org.xins.server.FunctionNotSpecifiedException;
 import org.xins.server.FunctionRequest;
@@ -100,7 +102,7 @@ public class YAFFCallingConvention extends CustomCallingConvention {
       // No matching virtual host found, return 404 page (NotFound),
       FunctionRequest xinsRequest;
       if (vhostHandler == null) {
-         xinsRequest = new FunctionRequest("NotFound");
+         xinsRequest = new FunctionRequest("NotFound", new BasicPropertyReader(), (Element) null);
 
       // Matching virtual host found
       } else {
