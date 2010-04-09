@@ -1,4 +1,4 @@
-// Copyright 2007-2009, PensioenPage B.V.
+// See the COPYRIGHT file for copyright and license information
 package org.znerd.yaff;
 
 import java.io.IOException;
@@ -12,8 +12,6 @@ import org.xins.common.MandatoryArgumentChecker;
 import org.xins.common.Utils;
 import org.xins.common.collections.PropertyReader;
 import org.xins.common.text.TextUtils;
-import org.xins.server.ConvertRequestException;
-import org.xins.server.ConvertResultException;
 import org.xins.server.CustomCallingConvention;
 import org.xins.server.FunctionNotSpecifiedException;
 import org.xins.server.FunctionRequest;
@@ -84,8 +82,7 @@ public class YAFFCallingConvention extends CustomCallingConvention {
    @Override
    protected FunctionRequest convertRequestImpl(HttpServletRequest httpRequest)
    throws InvalidRequestException,
-          FunctionNotSpecifiedException,
-          ConvertRequestException {
+          FunctionNotSpecifiedException {
 
       // Clear the context for this thread, just to be on the safe side
       AppCenter appCenter = AppCenter.get();
@@ -121,11 +118,10 @@ public class YAFFCallingConvention extends CustomCallingConvention {
    }
 
    @Override
-   protected void convertResultImpl(HttpServletRequest  httpRequest,
-                                    FunctionRequest     xinsRequest,
+   protected void convertResultImpl(FunctionResult      xinsResult,
                                     HttpServletResponse httpResponse,
-                                    FunctionResult      xinsResult)
-   throws IOException, ConvertResultException {
+                                    HttpServletRequest  httpRequest)
+   throws IOException {
 
       // XXX: Consider changing the approach with the AppCenter class to an
       //      approach where ServletRequest.setAttribute(...) is used, see:
@@ -228,7 +224,7 @@ public class YAFFCallingConvention extends CustomCallingConvention {
             siteHandler.serveError(httpRequest, httpResponse, HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
          } else {
             Utils.logError("Caught exception in YAFFCallingConvention.convertResultImpl method.", cause);
-            throw new ConvertResultException(cause);
+            throw new IOException("Failed to convert result.", cause);
          }
 
       // Clear the context
