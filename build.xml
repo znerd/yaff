@@ -46,6 +46,9 @@
 
 		<!-- Verbose log message -->
 		<echo level="verbose" message="${ant.project.name} ${project.version}" />
+
+		<!-- Class paths -->
+		<property name="logdoc.jar" value="${basedir}/lib/logdoc.jar" />
 	</target>
 
 	<target name="version" depends="-init">
@@ -59,7 +62,9 @@
 	</target>
 
 	<!-- Prepare for compilation (typically used inside IDEs, too) -->
-	<target name="prepare-compile" depends="-init" description="Prepares for the compilation, by generating source files and/or other files to be placed with the compiled files">
+	<target name="prepare-compile" depends="-init,-logdoc-task" description="Prepares for the compilation, by generating source files and/or other files to be placed with the compiled files">
+
+		<logdoc-code in="src/main/logdoc" out="${project.sourcedir.java}" />
 
 		<!-- Stick auxiliary files in location where compiled code will go --> 
 		<copy todir="${classes.outputdir}">
@@ -148,6 +153,15 @@
 				<pathelement path="${classes.outputdir}" />
 			</classpath>
 		</java>
+	</target>
+
+	<!-- Logdoc -->
+	<target name="-logdoc-task" depends="-init" description="Initializes the Logdoc task">
+		<taskdef resource="org/znerd/logdoc/ant/antlib.xml">
+			<classpath>
+				<pathelement location="${logdoc.jar}" />
+			</classpath>
+		</taskdef>
 	</target>
 
 </project>
