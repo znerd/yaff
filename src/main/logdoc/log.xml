@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<log domain="org.znerd.yaff" public="false">
+
+	<translation-bundle locale="en_US" />
+
+	<group id="init" name="Initialization">
+		<entry id="8000" level="DEBUG">
+			<description>Reading configuration file.</description>
+			<param name="fileName" />
+		</entry>
+		<entry id="8001" level="ERROR">
+			<description>Failed to parse configuration file.</description>
+			<param name="fileName" />
+		</entry>
+		<entry id="8002" level="INFO">
+			<description>Parsed configuration file.</description>
+			<param name="fileName"           nullable="false" type="text" />
+			<param name="siteStructureCount" nullable="false" type="int32" />
+			<param name="siteCount"          nullable="false" type="int32" />
+			<param name="hostnameCount"      nullable="false" type="int32" />
+		</entry>
+		<entry id="8003" level="ERROR" exception="true">
+			<description>Failed to acquire backend session for site.</description>
+			<param name="siteID" nullable="false" type="text" />
+		</entry>
+		<entry id="8004" level="INFO">
+			<description>Site associated with backend session.</description>
+			<param name="siteID"         nullable="false" type="text" />
+			<param name="backendSession" nullable="false" type="text" />
+		</entry>
+		<entry id="8005" level="DEBUG">
+			<description>Parsing element.</description>
+			<param name="tagName" nullable="false" />
+		</entry>
+		<entry id="8006" level="DEBUG">
+			<description>Parsing attribute.</description>
+			<param name="tagName"        nullable="false" />
+			<param name="attributeName"  nullable="false" />
+			<param name="attributeValue" nullable="false" />
+		</entry>
+		<entry id="8007" level="DEBUG">
+			<description>Parsing XML text.</description>
+			<param name="tagName" nullable="false" />
+			<param name="text"    nullable="false" />
+		</entry>
+		<entry id="8008" level="INFO">
+			<description>Attempting to initialize site.</description>
+			<param name="siteName" nullable="false" />
+		</entry>
+		<entry id="8009" level="NOTICE">
+			<description>Site: Initialized site.</description>
+			<param name="siteName" nullable="false" />
+		</entry>
+		<entry id="8010" level="ERROR" exception="true">
+			<description>Site: Failed to initialize site.</description>
+			<param name="siteName" nullable="false" />
+		</entry>
+		<entry id="8011" level="INFO">
+			<description>Site uses XSLT files from path.</description>
+			<param name="siteName" nullable="false" />
+			<param name="xsltPath" nullable="false" />
+		</entry>
+		<entry id="8012" level="DEBUG">
+			<description>Site: Added virtual host for site.</description>
+			<param name="hostname" nullable="false" />
+			<param name="siteName" nullable="false" />
+		</entry>
+		<entry id="8013" level="DEBUG">
+			<description>Site: Site with ancestor</description>
+			<param name="siteName" nullable="false" />
+			<param name="ancestor" nullable="false" />
+		</entry>
+		
+	</group>
+
+	<group id="init.ss" name="Session strategy initialization">
+		<entry id="8020" level="DEBUG">
+			<description>Initializing session strategy.</description>
+			<param name="siteID"    nullable="false" type="text" />
+			<param name="className" nullable="false" type="text" />
+		</entry>
+		<entry id="8021" level="ERROR" exception="true">
+			<description>Failed to initialize session strategy.</description>
+			<param name="siteID"    nullable="false" type="text" />
+			<param name="className" nullable="false" type="text" />
+			<param name="reason"    nullable="false" type="text" />
+		</entry>
+		<entry id="8022" level="DEBUG">
+			<description>Successfully initialized session strategy.</description>
+			<param name="siteID"    nullable="false" type="text" />
+			<param name="className" nullable="false" type="text" />
+		</entry>
+		<entry id="8023" level="DEBUG">
+			<description>Site: Session strategy for site gets number of properties.</description>
+			<param name="siteName"      nullable="false" type="text" />
+			<param name="numberOfProps" nullable="false" type="int32" />
+		</entry>
+	</group>
+
+	<group id="init.res" name="Resource set initialization">
+		<entry id="8030" level="INFO">
+			<description>Constructed resource set.</description>
+			<param name="parent" nullable="true"  type="text" />
+			<param name="name"   nullable="false" type="text" />
+			<param name="path"   nullable="false" type="text" />
+		</entry>
+	</group>
+
+	<group id="init.appcenter" name="AppCenter initialization">
+		<entry id="8040" level="DEBUG">
+			<description>AppCenter: Entering initImpl(PropertyReader).</description>
+		</entry>
+		<entry id="8041" level="DEBUG">
+			<description>AppCenter: Returning from initImpl(PropertyReader).</description>
+		</entry>
+		<entry id="8042" level="DEBUG">
+			<description>AppCenter: Adding site.</description>
+			<param name="siteName"   nullable="false" type="text" />
+		</entry>
+		<entry id="8043" level="DEBUG">
+			<description>AppCenter: initSite() called for site.</description>
+			<param name="siteName"   nullable="false" type="text" />
+		</entry>
+		<entry id="8044" level="DEBUG">
+			<description>AppCenter: Added virtual host for site.</description>
+			<param name="hostname"   nullable="false" type="text" />
+			<param name="siteName"   nullable="false" type="text" />
+		</entry>
+		<entry id="8045" level="DEBUG">
+			<description>AppCenter: Callback method 'siteInitialized' called for site.</description>
+			<param name="siteName"   nullable="false" type="text" />
+		</entry>
+		<entry id="8046" level="DEBUG">
+			<description>AppCenter: Removed virtual host for site.</description>
+			<param name="hostname"   nullable="false" type="text" />
+			<param name="siteName"   nullable="false" type="text" />
+		</entry>
+		<entry id="8047" level="DEBUG">
+			<description>AppCenter: Not initializing site that is marked as not usable.</description>
+			<param name="siteName"   nullable="false" type="text" />
+		</entry>
+	</group>
+
+	<group id="rt" name="Runtime">
+		<entry id="8100" level="DEBUG">
+			<description>Determined site based on hostname.</description>
+			<param name="hostname" nullable="false" type="text" />
+			<param name="siteID"   nullable="false" type="text" />
+		</entry>
+		<entry id="8101" level="NOTICE">
+			<description>Hostname is not associated with any site.</description>
+			<param name="hostname" nullable="false" type="text" />
+		</entry>
+
+		<entry id="8120" level="DEBUG">
+			<description>Finding page for path.</description>
+			<param name="trailingPath" nullable="false" />
+		</entry>
+		<entry id="8121" level="DEBUG">
+			<description>Found page.</description>
+			<param name="subpath"   nullable="false" />
+			<param name="remainder" nullable="false" />
+		</entry>
+
+		<entry id="8129" level="INFO">
+			<description>Client-side cached file is not modified.</description>
+			<param name="siteID"      nullable="false" type="text" />
+			<param name="extPath"     nullable="false" type="text" />
+			<param name="intPath"     nullable="false" type="text" />
+			<param name="matchMethod" nullable="false" type="text" />
+		</entry>
+		<entry id="8130" level="INFO">
+			<description>Returning requested file.</description>
+			<param name="siteID"  nullable="false" type="text" />
+			<param name="extPath" nullable="false" type="text" />
+			<param name="intPath" nullable="false" type="text" />
+		</entry>
+		<entry id="8131" level="INFO">
+			<description>Requested file not found.</description>
+			<param name="siteID"  nullable="false" type="text" />
+			<param name="extPath" nullable="false" type="text" />
+			<param name="intPath" nullable="false" type="text" />
+		</entry>
+		<entry id="8132" level="NOTICE">
+			<description>Unauthorized request for protected file.</description>
+			<param name="siteID"    nullable="false" type="text" />
+			<param name="realmType" nullable="false" type="text" />
+			<param name="extPath"   nullable="false" type="text" />
+		</entry>
+		<entry id="8133" level="NOTICE">
+			<description>Request matches non-regular file.</description>
+			<param name="siteID"  nullable="false" type="text" />
+			<param name="extPath" nullable="false" type="text" />
+		</entry>
+		<entry id="8134" level="NOTICE" exception="true">
+			<description>Security exception while accessing requested file.</description>
+			<param name="siteID"  nullable="false" type="text" />
+			<param name="extPath" nullable="false" type="text" />
+		</entry>
+		<entry id="8135" level="NOTICE">
+			<description>Field is linked to account property with invalid value.</description>
+			<param name="fieldName"       nullable="false" type="text" />
+			<param name="accountProperty" nullable="false" type="text" />
+			<param name="accountID"       nullable="false" type="text" />
+			<param name="value"           nullable="false" type="text" />
+		</entry>
+		<entry id="8136" level="DEBUG">
+			<description>Loading file.</description>
+			<param name="path" nullable="false" />
+		</entry>
+		<entry id="8137" level="ERROR" exception="true">
+			<description>Cannot render asked page.</description>
+		</entry>
+		<entry id="8138" level="ERROR" exception="true">
+			<description>Alca version could not be determined.</description>
+		</entry>
+		<entry id="8139" level="ERROR" exception="true">
+			<description>Contentdb version file could not be read.</description>
+			<param name="versionFile"  nullable="false" type="text" />
+		</entry>
+		<entry id="8140" level="WARNING">
+			<description>Failed to load page for URI.</description>
+			<param name="uri"  nullable="false" type="text" />
+		</entry>
+		<entry id="8141" level="NOTICE">
+			<description>Field is linked to page property with invalid value.</description>
+			<param name="fieldName"       nullable="false" type="text" />
+			<param name="pageProperty"    nullable="false" type="text" />
+			<param name="pageName"        nullable="false" type="text" />
+			<param name="value"           nullable="false" type="text" />
+		</entry>
+	</group>
+
+	<group id="rt.login" name="Login/logout">
+		<entry id="8200" level="DEBUG">
+			<description>Planning logout on this session.</description>
+			<param name="siteID"    nullable="false" type="text" />
+			<param name="realmType" nullable="false" type="text" />
+		</entry>
+		<entry id="8201" level="DEBUG">
+			<description>Planning login on this session.</description>
+			<param name="siteID"    nullable="false" type="text" />
+			<param name="realmType" nullable="false" type="text" />
+			<param name="user"      nullable="false" type="text" />
+		</entry>
+	</group>
+
+	<group id="rt.xslt" name="XSLT transformations">
+		<entry id="8300" level="INFO">
+			<description>Transformer factory created.</description>
+			<param name="className" nullable="false" type="text" />
+		</entry>
+		<entry id="8301" level="INFO">
+			<description>Using Saxon version.</description>
+			<param name="version" nullable="false" type="text" />
+		</entry>
+		<entry id="8302" level="WARNING">
+			<description>XSLT transformation triggered warning.</description>
+			<param name="siteID"       nullable="false" type="text"  />
+			<param name="xsltFile"     nullable="false" type="text"  />
+			<param name="message"      nullable="false" type="text"  />
+			<param name="sourceLine"   nullable="true"  type="int32" />
+			<param name="sourceColumn" nullable="true"  type="int32" />
+			<param name="className"    nullable="false" type="text"  />
+		</entry>
+		<entry id="8303" level="ERROR">
+			<description>XSLT transformation triggered non-fatal error.</description>
+			<param name="siteID"       nullable="false" type="text"  />
+			<param name="xsltFile"     nullable="false" type="text"  />
+			<param name="message"      nullable="false" type="text"  />
+			<param name="sourceLine"   nullable="true"  type="int32" />
+			<param name="sourceColumn" nullable="true"  type="int32" />
+			<param name="className"    nullable="false" type="text"  />
+		</entry>
+		<entry id="8304" level="ERROR">
+			<description>XSLT transformation triggered fatal error.</description>
+			<param name="siteID"       nullable="false" type="text"  />
+			<param name="xsltFile"     nullable="false" type="text"  />
+			<param name="message"      nullable="false" type="text"  />
+			<param name="sourceLine"   nullable="true"  type="int32" />
+			<param name="sourceColumn" nullable="true"  type="int32" />
+			<param name="className"    nullable="false" type="text"  />
+		</entry>
+		<entry id="8305" level="INFO">
+			<description>Compiled XSLT file for site.</description>
+			<param name="siteName"     nullable="false" type="text"   />
+			<param name="duration"     nullable="false" type="int64"  />
+		</entry>
+		<entry id="8306" level="DEBUG">
+			<description>Transforming page.</description>
+		</entry>
+		<entry id="8307" level="INFO">
+			<description>Page transformation failed.</description>
+			<param name="duration"     nullable="false" type="int64"   />
+		</entry>
+		<entry id="8308" level="INFO">
+			<description>Transformed page.</description>
+			<param name="duration"     nullable="false" type="int64"   />
+		</entry>
+		<entry id="8309" level="DEBUG">
+			<description>Set transformer property.</description>
+			<param name="key"          nullable="false" type="text"   />
+			<param name="value"        nullable="false" type="text"   />
+		</entry>
+	</group>
+	
+	<group id="rt.xml" name="XML building">
+		<entry id="8400" level="WARNING">
+			<description>DocumentBuilder: Unexpected situation: No page mode set.</description>
+		</entry>
+	</group>
+	
+	<group id="rt.session" name="Session and judgement runtime">
+		<entry id="8501" level="DEBUG">
+			<description>Processing judgement.</description>
+			<param name="judgementClass" nullable="false" />
+		</entry>
+		<entry id="8502" level="DEBUG">
+			<description>Judgement is shortcut.</description>
+		</entry>
+		<entry id="8503" level="DEBUG">
+			<description>Judgement is create frontend session.</description>
+		</entry>
+		<entry id="8504" level="ERROR">
+			<description>Failed to create a frontend session.</description>
+		</entry>
+		<entry id="8505" level="INFO">
+			<description>Created frontend session.</description>
+			<param name="sessionID" nullable="false" />
+		</entry>
+		<entry id="8506" level="DEBUG">
+			<description>Judgement is retrieve existing frontend session.</description>
+		</entry>
+		<entry id="8507" level="ERROR">
+			<description>Failed to retrieve an existing a frontend session.</description>
+		</entry>
+		<entry id="8508" level="INFO">
+			<description>Retrieved existing frontend session.</description>
+			<param name="sessionID" nullable="false" />
+		</entry>
+		<entry id="8509" level="ERROR" exception="true">
+			<description>Failed to call Alca API.</description>
+		</entry>
+		<entry id="8510" level="DEBUG">
+			<description>Session has number of logins.</description>
+			<param name="numberOfLogins" nullable="false" type="int32" />
+		</entry>
+	</group>
+</log>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE translation-bundle PUBLIC "-//znerd//DTD Logdoc Translation Bundle 0.1//EN" "http://www.znerd.org/logdoc/dtd/translation-bundle_0_1.dtd">
+
+<translation-bundle>
+	<translation entry="8000">Reading configuration file <value-of-param name="fileName" format="quoted" />.</translation>
+	<translation entry="8001">Failed to parse configuration file <value-of-param name="fileName" format="quoted" />.</translation>
+	<translation entry="8002">Successfully parsed configuration file <value-of-param name="fileName" format="quoted" />. Parsed <value-of-param name="siteStructureCount" /> site structure(s) and <value-of-param name="siteCount" /> site(s) with in total <value-of-param name="hostnameCount" /> hostname(s).</translation>
+	<translation entry="8003">Failed to acquire backend session for site <value-of-param name="siteID" format="quoted" />.</translation>
+	<translation entry="8004">Site <value-of-param name="siteID" format="quoted" /> is associated with backend session <value-of-param name="backendSession" format="quoted" />.</translation>
+	<translation entry="8005">Parsing XML element <value-of-param name="tagName" format="quoted" />.</translation>
+	<translation entry="8006">Parsing XML element <value-of-param name="tagName" format="quoted" />, attribute <value-of-param name="attributeName" format="quoted" /> with value <value-of-param name="attributeValue" format="quoted" />.</translation>
+	<translation entry="8007">Parsing XML element <value-of-param name="tagName" format="quoted" />, text content <value-of-param name="text" format="quoted" />.</translation>
+	<translation entry="8008">Attempting to initialize site <value-of-param name="siteName" format="quoted" />.</translation>
+	<translation entry="8009">Site: Initialized site <value-of-param name="siteName" format="quoted" />.</translation>
+	<translation entry="8010">Site: Failed to initialize site <value-of-param name="siteName" format="quoted" />.</translation>
+	<translation entry="8011">Site <value-of-param name="siteName" format="quoted" /> uses XSLT file set at <value-of-param name="xsltPath" format="quoted" />.</translation>
+	<translation entry="8012">Site: Added virtual host <value-of-param name="hostname" format="quoted" /> for site <value-of-param name="siteName" format="quoted" />.</translation>
+	<translation entry="8013">Site: Site <value-of-param name="siteName" format="quoted" /> ancestor is: <value-of-param name="ancestor" format="quoted" />.</translation>
+
+	<translation entry="8020">Site <value-of-param name="siteID" format="quoted" />: Initializing session strategy <value-of-param name="className" format="quoted" />.</translation>
+	<translation entry="8021">Site <value-of-param name="siteID" format="quoted" />: Failed to initialize session strategy <value-of-param name="className" format="quoted" />.</translation>
+	<translation entry="8022">Site <value-of-param name="siteID" format="quoted" />: Successfully initialized session strategy <value-of-param name="className" format="quoted" />.</translation>
+	<translation entry="8023">Site: Session strategy for site <value-of-param name="siteName" format="quoted" /> gets <value-of-param name="numberOfProps" /> properties.</translation>
+
+	<translation entry="8030">Constructed resource set <value-of-param name="name" format="quoted" /> with parent <value-of-param name="parent" format="quoted" />. Path is <value-of-param name="path" format="quoted" />.</translation>
+
+	<translation entry="8040">AppCenter: Entering initImpl(PropertyReader).</translation>
+	<translation entry="8041">AppCenter: Returning from initImpl(PropertyReader).</translation>
+	<translation entry="8042">AppCenter: Adding site <value-of-param name="siteName" format="quoted" />.</translation>
+	<translation entry="8043">AppCenter: initSite(...) called for site <value-of-param name="siteName" format="quoted" />.</translation>
+	<translation entry="8044">AppCenter: Added virtual host <value-of-param name="hostname" format="quoted" /> for site <value-of-param name="siteName" format="quoted" />.</translation>
+	<translation entry="8045">AppCenter: Callback method 'siteInitialized' called for site <value-of-param name="siteName" format="quoted" />.</translation>
+	<translation entry="8046">AppCenter: Removed virtual host <value-of-param name="hostname" format="quoted" /> for site <value-of-param name="siteName" format="quoted" />.</translation>
+	<translation entry="8047">Not initializing site <value-of-param name="siteName" format="quoted" />. It is marked as not usable.</translation>
+
+	<translation entry="8100">Hostname <value-of-param name="hostname" format="quoted" /> is associated with site <value-of-param name="siteID" format="quoted" />.</translation>
+	<translation entry="8101">Hostname <value-of-param name="hostname" format="quoted" /> is not associated with any site.</translation>
+	
+	<translation entry="8120">Finding page for trailing path <value-of-param name="trailingPath" format="quoted" />.</translation>
+
+	<translation entry="8129">Site <value-of-param name="siteID" format="quoted" />: '304 Not Modified for file <value-of-param name="extPath" format="quoted" />, found at <value-of-param name="intPath" format="quoted" />.</translation>
+	<translation entry="8130">Site <value-of-param name="siteID" format="quoted" />: '200 OK' for file <value-of-param name="extPath" format="quoted" />, found at <value-of-param name="intPath" format="quoted" />.</translation>
+	<translation entry="8131">Site <value-of-param name="siteID" format="quoted" />: File <value-of-param name="extPath" format="quoted" /> not found, expected at <value-of-param name="intPath" format="quoted" />.</translation>
+	<translation entry="8132">Site <value-of-param name="siteID" format="quoted" />: Unauthorized request for file <value-of-param name="extPath" format="quoted" />, in <value-of-param name="realmType" format="quoted" /> realm. Session is not currently logged in within that realm.</translation>
+	<translation entry="8133">Site <value-of-param name="siteID" format="quoted" />: Requested file <value-of-param name="extPath" format="quoted" /> matches non-regular file. Indicating file not found.</translation>
+	<translation entry="8134">Site <value-of-param name="siteID" format="quoted" />: Requested file <value-of-param name="extPath" format="quoted" /> caused a SecurityException.</translation>
+	<translation entry="8135">The field <value-of-param name="fieldName" format="quoted" /> is linked to the account property <value-of-param name="accountProperty" format="quoted" />, but for account <value-of-param name="accountID" format="quoted" /> that property has an invalid value <value-of-param name="value" format="quoted" />.</translation>
+	<translation entry="8136">Loading file <value-of-param name="path" format="quoted" />.</translation>
+	<translation entry="8137">Cannot render asked page.</translation>
+	<translation entry="8138">Alca version can not be determined.</translation>
+	<translation entry="8139">Contentdb version file <value-of-param name="versionFile" format="quoted" /> could not be read.</translation>
+	<translation entry="8140">Failed to load page for URI <value-of-param name="uri" format="quoted" />.</translation>
+	<translation entry="8141">The field <value-of-param name="fieldName" format="quoted" /> is linked to the page property <value-of-param name="pageProperty" format="quoted" />, but for page <value-of-param name="pageName" format="quoted" /> that property has an invalid value <value-of-param name="value" format="quoted" />.</translation>
+	
+	<translation entry="8200">Site <value-of-param name="siteID" format="quoted" />: Planning logout from realm <value-of-param name="realmType" format="quoted" />.</translation>
+	<translation entry="8201">Site <value-of-param name="siteID" format="quoted" />: Planning login to realm <value-of-param name="realmType" format="quoted" /> as user <value-of-param name="user" format="quoted" />.</translation>
+	
+	<translation entry="8300">Transformer factory <value-of-param name="className" format="quoted" /> created.</translation>
+	<translation entry="8301">Using Saxon <value-of-param name="version" /> for XSLT transformation.</translation>
+	<translation entry="8302">Site <value-of-param name="siteID" format="quoted" />: Transformation of <value-of-param name="xsltFile" format="quoted" /> triggered a warning at line <value-of-param name="sourceLine" />, column <value-of-param name="sourceColumn" />: <value-of-param name="message" format="quoted" />.</translation>
+	<translation entry="8303">Site <value-of-param name="siteID" format="quoted" />: Transformation of <value-of-param name="xsltFile" format="quoted" /> triggered a non-fatal error at line <value-of-param name="sourceLine" />, column <value-of-param name="sourceColumn" />: <value-of-param name="message" format="quoted" />.</translation>
+	<translation entry="8304">Site <value-of-param name="siteID" format="quoted" />: Transformation of <value-of-param name="xsltFile" format="quoted" /> triggered a fatal error at line <value-of-param name="sourceLine" />, column <value-of-param name="sourceColumn" />: <value-of-param name="message" format="quoted" />.</translation>
+	<translation entry="8305">Compiled XSLT file for site <value-of-param name="siteName" format="quoted" /> in <value-of-param name="duration" /> ms.</translation>
+	<translation entry="8306">Transforming page.</translation>
+	<translation entry="8307">Page transformation failed in <value-of-param name="duration" /> ms.</translation>
+	<translation entry="8308">Transformed page in <value-of-param name="duration" /> ms.</translation>
+	<translation entry="8309">Set transformer property <value-of-param name="key" format="quoted" /> to <value-of-param name="value" format="quoted" />.</translation>
+
+	<translation entry="8400">DocumentBuilder: Unexpected situation: No page mode set.</translation>
+	
+	<translation entry="8501">Received judgement of class <value-of-param name="judgementClass" format="quoted" />.</translation>
+	<translation entry="8502">Not processing call, in accordance with judgement.</translation>
+	<translation entry="8503">Creating frontend session, in accordance with judgement.</translation>
+	<translation entry="8504">Creation of frontend session, in accordance with judgement, failed.</translation>
+	<translation entry="8505">Creation of frontend session, in accordance with judgement, succeeded. Session ID is <value-of-param name="sessionID" format="quoted" />.</translation>
+	<translation entry="8506">Retrieving existing frontend session, in accordance with judgement.</translation>
+	<translation entry="8507">Retrieval of existing frontend session, in accordance with judgement, failed.</translation>
+	<translation entry="8508">Retrieval of existing frontend session, in accordance with judgement, succeeded. Session ID is <value-of-param name="sessionID" format="quoted" />.</translation>
+	<translation entry="8509">Failed to call the Alca API.</translation>
+	<translation entry="8510">Session has <value-of-param name="numberOfLogins" /> login(s).</translation>
+	
+	
+</translation-bundle>
