@@ -14,6 +14,8 @@ import org.xins.common.collections.BasicPropertyReader;
 import org.xins.common.collections.PropertyReader;
 import org.xins.common.text.TextUtils;
 import org.xins.common.xml.Element;
+import org.xins.server.ConvertRequestException;
+import org.xins.server.ConvertResultException;
 import org.xins.server.CustomCallingConvention;
 import org.xins.server.FunctionNotSpecifiedException;
 import org.xins.server.FunctionRequest;
@@ -90,7 +92,8 @@ public class YAFFCallingConvention extends CustomCallingConvention {
    @Override
    protected FunctionRequest convertRequestImpl(HttpServletRequest httpRequest)
    throws InvalidRequestException,
-          FunctionNotSpecifiedException {
+          FunctionNotSpecifiedException,
+          ConvertRequestException {
 
       // Clear the context for this thread, just to be on the safe side
       AppCenter appCenter = AppCenter.get();
@@ -123,17 +126,15 @@ public class YAFFCallingConvention extends CustomCallingConvention {
          xinsRequest = vhostHandler.convertRequest(httpRequest);
       }
       
-      // Store the FunctionRequest, so convertResultImpl can use it
-      httpRequest.setAttribute(XINS_REQUEST_ATTR, xinsRequest);
-
       return xinsRequest;
    }
 
    @Override
-   protected void convertResultImpl(FunctionResult      xinsResult,
+   protected void convertResultImpl(HttpServletRequest  httpRequest,
+                                    FunctionRequest     xinsRequest,
                                     HttpServletResponse httpResponse,
-                                    HttpServletRequest  httpRequest)
-   throws IOException {
+                                    FunctionResult      xinsResult)
+   throws IOException, ConvertResultException {
 
       // XXX: Consider changing the approach with the AppCenter class to an
       //      approach where ServletRequest.setAttribute(...) is used, see:
@@ -143,12 +144,6 @@ public class YAFFCallingConvention extends CustomCallingConvention {
       MandatoryArgumentChecker.check("xinsResult",   xinsResult,
                                      "httpResponse", httpResponse,
                                      "httpRequest",  httpRequest);
-
-      // Find the (required) XINS FunctionRequest reference
-      FunctionRequest xinsRequest = (FunctionRequest) httpRequest.getAttribute(XINS_REQUEST_ATTR);
-      if (xinsRequest == null) {
-         throw new IOException("Unable to find org.xins.server.FunctionRequest instance associated with the javax.servlet.HttpServletRequest object.");
-      }
 
       // Possibly the HTTP request is wrapped
       Object wrapper = httpRequest.getAttribute(WRAPPED_REQUEST);
