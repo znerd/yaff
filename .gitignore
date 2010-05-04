@@ -1,1 +1,4 @@
 target
+src/main/java/org/znerd/yaff/Log.java
+src/main/java/org/znerd/yaff/TranslationBundle.java
+src/main/java/org/znerd/yaff/TranslationBundle_en_US.java
